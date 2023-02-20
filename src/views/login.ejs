@@ -1,0 +1,40 @@
+<%- include('includes/head') %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8 my-5">
+        <h1 class="h1 text-center fw-normal">Login</h1>
+        <p class="text-light text-center"><mark class="rounded-3"><a class="text-decoration-none text-dark" href="/register">Ou realize seu cadastro.</a></mark></p>
+
+        <div class="row">
+          <div class="col my-3">
+            <div class="alert alert-danger d-none">Apenas um teste!</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-6">
+            <form action="/login/login" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control bg-dark text-light" id="email" name="email">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" class="form-control bg-dark text-light" id="password" name="password">
+              </div>
+              <button type="submit" class="btn btn-dark bg-black form-control fw-semibold my-4 py-3" style="letter-spacing: 0.3rem;">Login</button>
+            </form>
+          </div>
+          <div class="col-lg-3"></div>
+        </div>
+
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+
+<%- include('includes/footer') %>

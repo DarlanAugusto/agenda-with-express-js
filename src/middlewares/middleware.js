@@ -4,9 +4,7 @@ exports.globalMiddleware = (req, res, next) => {
 }
 
 exports.checkCsrfError = (err, req, res, next) => {
-  if(err && err.code === 'EBADCSRFTOKEN') {
-    res.render('csrf_error');
-  }
+  if(err) res.render('404');
 }
 
 exports.csrfToken = (req, res, next) => {
