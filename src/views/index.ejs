@@ -1,18 +1,53 @@
 <%- include('includes/head') %>
 
-  <section class="container">
-    <h1><%= title %></h1>
-    <hr>
-    <p><%= description %></p>
-    <span><%= localVar %></span>
-    <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8 my-3">
+        <h1 class="h1 text-center fw-normal">Agenda</h1>
+        <p class="text-light text-center"><mark class="rounded-3">Seus Contatos Abaixo.</mark></p>
 
-    <form action="/" method="post">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <label>Algum dado</label>
-      <input type="text" name="dado">
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-  
-<%- include('includes/foot') %>
+        <div class="row">
+          <div class="col my-3">
+            <div class="alert alert-danger">Apenas um teste!</div>
+          </div>
+        </div>
+
+        <div class="responsive-table">
+          <table class="table table-dark table-striped table-borderless my-3">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contato</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+
+<%- include('includes/footer') %>
