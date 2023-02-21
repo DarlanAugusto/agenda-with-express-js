@@ -51,4 +51,4 @@ app.on("ready", () => {
   app.listen(3333, () => {
     console.log('Servidor iniciado na porta: 3333.\nAcesse: http://localhost:3333');
   });
-})
+});

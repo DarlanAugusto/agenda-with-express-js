@@ -28,7 +28,16 @@
                       <th scope="row"><%= contato.name %></th>
                       <td><%= contato.lastname %></td>
                       <td><%= contato.email %></td>
-                      <td><%= contato.phonenumber %></td>
+                      <td>
+                        <%
+                          const phoneArray =  contato.phonenumber.split('');
+                          phoneArray.splice(0, 0, "(");
+                          phoneArray.splice(3, 0, ") ");
+                          phoneArray.splice(5, 0, " ");
+                          phoneArray.splice(10, 0, "-");
+                        %>
+                        <%= phoneArray.join(''); %>
+                      </td>
                       <td>
                         <a class="text-warning opacity-75" title="Editar" href="/contatos/edit/<%= contato._id %>">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
