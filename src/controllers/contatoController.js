@@ -60,3 +60,29 @@ exports.edit = async (req, res) => {
 
   }  
 }
+
+exports.update = async (req, res) => {
+  if(!req.params.id) return;
+  console.log(req.session.user);
+  try {
+    const contato = new Contato(req.body, req.session.user);
+    await contato.update(req.params.id);
+    if( contato.errors.length ) {
+      req.flash("errors", contato.errors);
+      req.session.save(() => {
+        return res.redirect(`/contatos/edit/${req.params.id}`);
+      })
+      return;
+    } 
+    req.flash('success', "Contato atualizado com sucesso!");
+    req.session.save(() => {
+      console.log(contato.contato);
+      return res.redirect(`/contatos/edit/${contato.contato._id}`);
+    })
+    return;
+
+  } catch (error) {
+    console.log(error);
+    res.render('404');
+  }
+}

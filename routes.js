@@ -22,8 +22,10 @@ route.post('/register', userController.register);
 
 // contatos
 route.get('/contatos', authUser, contatoController.index);
-route.get('/contatos/edit/:id', authUser, contatoController.edit);
 route.get('/contatos/register', authUser, contatoController.new);
+route.get('/contatos/edit/:id', authUser, contatoController.edit);
 route.post('/contatos/register', authUser, contatoController.register);
+route.post('/contatos/edit/:id', authUser, contatoController.update);
+
 
 module.exports = route;

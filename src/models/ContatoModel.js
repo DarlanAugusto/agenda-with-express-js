@@ -44,6 +44,13 @@ class Contato {
 
   }
 
+  async update(id) {
+    if(typeof id !== "string") return;
+    this.validate()
+    if(this.errors.length) return;
+    this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
+  }
+
   validate() {
     this.cleanUp();
     this.validateName();
@@ -71,7 +78,6 @@ class Contato {
   async contactExists() {
     this.contato = await ContatoModel.findOne({ phonenumber: this.body.phonenumber, user_id: this.user_id });
     if(this.contato) this.errors.push("Já existe um contato com este Número!");
-    this.contato = null;
 
     this.contato = await ContatoModel.findOne({ email: this.body.email, user_id: this.user_id });
     if(this.contato) this.errors.push("Já existe um contato com este E-mail");

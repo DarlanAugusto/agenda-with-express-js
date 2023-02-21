@@ -15,7 +15,11 @@
     <div class="row">
       <div class="col-lg-3"></div>
       <div class="col-lg-6">
-        <form action="/contatos/register" method="POST">
+        <% if(contato && contato._id) { %>
+          <form action="/contatos/edit/<%= contato._id %>" method="POST">
+        <% } else{ %>
+          <form action="/contatos/register" method="POST">
+        <% } %>
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input type="hidden" name="id" value="<% if(contato) { %><%= contato._id %><% } %>">
           <div class="mb-3 row">
