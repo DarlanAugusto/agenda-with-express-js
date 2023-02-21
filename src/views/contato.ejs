@@ -6,7 +6,11 @@
       <div class="col-lg-2"></div>
       <div class="col-lg-8 my-3">
         <h1 class="h1 text-center fw-normal">Contato</h1>
-        <p class="text-light text-center"><mark class="rounded-3">Adicionar um novo contato.</mark></p>
+        <% if(contato && contato._id) { %>
+            <p class="text-light text-center"><mark class="rounded-3">Edite e salve as alterações</mark></p>
+          <% } else{ %>
+            <p class="text-light text-center"><mark class="rounded-3">Adicionar um novo contato</mark></p>
+        <% } %>
         <%- include('./includes/messages') %>
       </div>
       <div class="col-lg-2"></div>
@@ -42,8 +46,9 @@
               <input type="tel" class="form-control bg-dark text-light" id="phonenumber" name="phonenumber" value="<% if(contato) { %><%= contato.phonenumber %><% } %>">
             </div>
           </div>
-          <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-dark bg-black fw-semibold py-3" style="letter-spacing: 0.2rem;">Salvar</button>
+          <div class="d-flex justify-content-end gap-2">
+            <a href="/" type="button" class="btn btn-dark fw-normal opacity-75 py-2" style="letter-spacing: 0.1rem;">Cancelar</a>
+            <button type="submit" class="btn btn-dark bg-black fw-semibold py-2" style="letter-spacing: 0.2rem;">Salvar</button>
           </div>
         </form>
       </div>

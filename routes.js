@@ -26,6 +26,7 @@ route.get('/contatos/register', authUser, contatoController.new);
 route.get('/contatos/edit/:id', authUser, contatoController.edit);
 route.post('/contatos/register', authUser, contatoController.register);
 route.post('/contatos/edit/:id', authUser, contatoController.update);
+route.get('/contatos/delete/:id', authUser, contatoController.delete);
 
 
 module.exports = route;

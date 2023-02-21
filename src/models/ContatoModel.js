@@ -98,6 +98,17 @@ class Contato {
       user_id: this.user._id
     }
   }
+
+  async getAll(userid) {
+    const contatos = await ContatoModel.find({ user_id: userid }).sort({ createdAt: -1 });
+    return contatos;
+  }
+
+  async delete(id) {
+    if(typeof id !== "string") return;
+    const contato = await ContatoModel.findByIdAndDelete(id);
+    return contato;
+  }
 }
 
 module.exports = Contato;

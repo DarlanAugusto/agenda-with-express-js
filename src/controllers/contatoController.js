@@ -1,8 +1,11 @@
 const Contato = require('../models/ContatoModel');
 
-exports.index = (req, res) => {
-  res.render('index');
-  return
+exports.index = async (req, res) => {
+  const contato = new Contato();
+  const contatos = await contato.getAll(req.session.user._id);
+
+  res.render('index', { contatos });
+  return;
 }
 
 exports.new = (req, res) => {
@@ -85,4 +88,24 @@ exports.update = async (req, res) => {
     console.log(error);
     res.render('404');
   }
+}
+
+exports.delete = async(req, res) => {
+  if(!req.params.id) return;
+
+  try {
+    const contato = new Contato();
+    const deleted = await contato.delete(req.params.id);
+    console.log(deleted);
+  
+    req.flash("success", `O Contato <b>${deleted.name}</b> foi removido com sucesso!`);
+    req.session.save(()=> {
+      return res.redirect('/contatos');
+    });
+
+  } catch (error) {
+    console.log(error);
+    return res.render('404');    
+  }
+
 }

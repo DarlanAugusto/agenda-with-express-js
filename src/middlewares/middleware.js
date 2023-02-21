@@ -18,11 +18,7 @@ exports.csrfToken = (req, res, next) => {
 
 exports.authUser = (req, res, next) => {
   if(!req.session.user) {
-    req.flash('infos', 'Para acessar esta página você deve fazer o Login.');
-    req.session.save(() => {
-      return res.redirect('/login');
-    })
-    return;
+    return res.redirect('/login');
   }
 
   next();
