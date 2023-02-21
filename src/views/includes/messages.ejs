@@ -3,7 +3,7 @@
   <div class="col my-3">
     <div class="alert alert-danger">
       <% errors.forEach(error => { %>
-        <%= error %><br>
+        <%- error %><br>
       <% }) %>
     </div>
   </div>
@@ -15,7 +15,19 @@ if( success.length ) { %>
     <div class="col my-3">
       <div class="alert alert-success">
         <% success.forEach(mesage => { %>
-          <%= mesage %><br>
+          <%- mesage %><br>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+<% }
+
+if( infos.length ) { %>
+  <div class="row">
+    <div class="col my-3">
+      <div class="alert alert-info">
+        <% infos.forEach(info => { %>
+          <%- info %><br>
         <% }) %>
       </div>
     </div>

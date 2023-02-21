@@ -16,21 +16,32 @@ class User {
     this.user = null;
   }
 
+  async auth() {
+    if( this.errors.length ) return;
+
+    this.user = await UserModel.findOne({ email: this.body.email });
+
+    if(!this.user || !bcryptjs.compareSync(this.body.password, this.user.password)) {
+      this.errors.push('Usuário e/ou senha incorretos!');
+      this.user = null;
+      return;
+    }
+
+  }
+
   async register() {
+
     this.validate();
     if( this.errors.length ) return;
     
     await this.userExists();
     if( this.errors.length ) return;
 
-    try {
-      const salt = bcryptjs.genSaltSync();
-      this.body.password = bcryptjs.hashSync(this.body.password, salt);
-      this.user = await UserModel.create(this.body);
-    } 
-    catch (error) {
-      console.log(error);
-    }
+    const salt = bcryptjs.genSaltSync();
+    this.body.password = bcryptjs.hashSync(this.body.password, salt);
+
+    this.user = await UserModel.create(this.body);
+
   }
 
   validate() {
@@ -54,8 +65,8 @@ class User {
   }
 
   async userExists() {
-    const user = await UserModel.findOne({ email: this.body.email });
-    if(user) this.errors.push("Este usuário já existe!");
+    this.user = await UserModel.findOne({ email: this.body.email });
+    if(this.user) this.errors.push("Este usuário já existe!");
   }
 
   cleanUp() {

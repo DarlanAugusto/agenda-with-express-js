@@ -10,6 +10,9 @@ route.get('/', homeController.index);
 // rotas do login
 route.get('/login', userController.index);
 route.get('/login/register', userController.new);
+route.post('/login', userController.auth);
+
+route.get('/logout', userController.logout);
 
 // rotas do cadastro
 route.post('/register', userController.register);
