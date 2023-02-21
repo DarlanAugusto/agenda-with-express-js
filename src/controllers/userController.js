@@ -1,7 +1,6 @@
 const User = require('../models/UserModel');
 
 exports.index = (req, res) => {
-  req.query.page = 'login';
   if(req.session.user) {
 
     req.flash('infos', 'Você já <b>está logado</b>! Faça <a href="/logout"><b>Logout</b></a> para acessar a área de Login.');
@@ -16,7 +15,6 @@ exports.index = (req, res) => {
 }
 
 exports.new = (req, res) => {
-  req.query.page = 'register';
   if(req.session.user) {
 
     req.flash('infos', 'Você já <b>está logado</b>! Faça <a href="/logout"><b>Logout</b></a> para acessar a área de Cadastros.');

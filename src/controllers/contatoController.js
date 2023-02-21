@@ -1,0 +1,62 @@
+const Contato = require('../models/ContatoModel');
+
+exports.index = (req, res) => {
+  res.render('index');
+  return
+}
+
+exports.new = (req, res) => {
+  res.render('contato', { contato: null });
+  return;
+}
+
+exports.register = async (req, res) => {
+  try {
+    const contato = new Contato(req.body, req.session.user);
+    await contato.register();
+
+    if( contato.errors.length ) {
+      req.flash('errors', contato.errors);
+      req.session.save(() => {
+        return res.redirect('/contatos/register');
+      })
+      return;
+    }
+
+    req.flash("success", "Contato salvo com sucesso!");
+    req.session.save(() => {
+      res.redirect(`/contatos/edit/${contato.contato._id}`);
+      return;
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.render('404');
+    return;
+  }
+}
+
+exports.edit = async (req, res) => {
+  // res.send(red.params.)
+
+  if(! req.params.id ) return res.render('404');
+
+  try {
+    const contato = new Contato();
+    await contato.findContactById(req.params.id, req.session.user._id);
+    if(contato.errors.length) {
+      req.flash("errors", contato.errors);
+      req.session.save(() => {
+        return res.redirect('/');
+      });
+      return;
+    }
+    if(!contato.contato) return res.render('404');
+    return res.render('contato', { contato: contato.contato });
+
+  } catch (error) {
+    console.log(error);
+    return res.render('404');
+
+  }  
+}
