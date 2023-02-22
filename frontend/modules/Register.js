@@ -21,12 +21,10 @@ export default class Register {
       event.preventDefault();
       this.removeErrors();
       this.validate();
-      if( this.errors ) {
-        return;
-      }
+      if( this.errors ) return;
+
       this.form.submit();
-      
-    })
+    });
   }
 
   handleKeyPress() {

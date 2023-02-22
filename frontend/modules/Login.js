@@ -21,12 +21,9 @@ export default class Login {
       event.preventDefault();
       this.removeErrors();
       this.validate();
-      if( this.errors ) {
-        return;
-      }
+      if( this.errors ) return;
       this.form.submit();
-      
-    })
+    });
   }
 
   handleKeyPress() {

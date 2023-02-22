@@ -57,7 +57,6 @@ export default class Contato {
 
   validateName() {
     const name = this.form.querySelector("#name");
-    console.log("aa");
     if( name.value.length < 3 ) {
       this.createError(name, "No mínimo 3 caracteres!");
       this.errors = true;
